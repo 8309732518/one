@@ -8,9 +8,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     height: 100vh;
     overflow: hidden;
-    background: linear-gradient(to bottom, #0F2027, #203A43, #2C5364);
     position: relative;
-    color: white;
 }
 
 .scene {
@@ -19,201 +17,239 @@ body {
     height: 100%;
 }
 
-.moon {
-    position: absolute;
-    top: 15%;
-    right: 20%;
-    width: 100px;
-    height: 100px;
-    background: radial-gradient(circle at 30% 30%, #F9F9F9, #E2E2E2);
-    border-radius: 50%;
-    box-shadow: 0 0 30px rgba(249, 249, 249, 0.6);
-}
-
-.stars {
+.sky {
     position: absolute;
     width: 100%;
+    height: 60%;
+    background: linear-gradient(to bottom, #FF7E5F, #FEB47B);
+    animation: skyColorChange 15s infinite alternate;
+}
+
+@keyframes skyColorChange {
+    0% { background: linear-gradient(to bottom, #FF7E5F, #FEB47B); }
+    50% { background: linear-gradient(to bottom, #cc2b5e, #753a88); }
+    100% { background: linear-gradient(to bottom, #0F2027, #203A43); }
+}
+
+.sun {
+    position: absolute;
+    top: 10%;
+    right: 15%;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle at 30% 30%, #FFD700, #FF8C00);
+    border-radius: 50%;
+    box-shadow: 0 0 50px #FFA500;
+    animation: sunset 15s infinite alternate;
+}
+
+@keyframes sunset {
+    0% { top: 10%; right: 15%; opacity: 1; }
+    50% { top: 20%; right: 25%; opacity: 0.8; }
+    100% { top: 30%; right: 35%; opacity: 0.5; }
+}
+
+.ocean {
+    position: absolute;
+    bottom: 30%;
+    width: 100%;
+    height: 20%;
+    background: linear-gradient(to bottom, #1E90FF, #00BFFF);
+    animation: oceanColorChange 15s infinite alternate;
+}
+
+@keyframes oceanColorChange {
+    0% { background: linear-gradient(to bottom, #1E90FF, #00BFFF); }
+    50% { background: linear-gradient(to bottom, #1D2B64, #1D2B64); }
+    100% { background: linear-gradient(to bottom, #0F2027, #0F2027); }
+}
+
+.wave {
+    position: absolute;
+    width: 200%;
     height: 100%;
-    background-image: 
-        radial-gradient(1px 1px at 20px 30px, white, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 40px 70px, white, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 80px 40px, white, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 120px 80px, white, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 160px 30px, white, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 200px 60px, white, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 240px 20px, white, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 280px 50px, white, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 320px 80px, white, rgba(0,0,0,0));
-    animation: twinkle 4s infinite;
+    background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%2300BFFF"/></svg>');
+    background-repeat: repeat-x;
+    animation: waveMove 10s linear infinite;
+    opacity: 0.8;
 }
 
-@keyframes twinkle {
-    0% { opacity: 0.3; }
-    50% { opacity: 1; }
-    100% { opacity: 0.3; }
+.wave:nth-child(1) {
+    bottom: 0;
+    animation-duration: 15s;
 }
 
-.ground {
+.wave:nth-child(2) {
+    bottom: 10px;
+    animation-duration: 12s;
+    opacity: 0.5;
+}
+
+.wave:nth-child(3) {
+    bottom: 20px;
+    animation-duration: 8s;
+    opacity: 0.3;
+}
+
+@keyframes waveMove {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.sand {
     position: absolute;
     bottom: 0;
     width: 100%;
     height: 30%;
-    background: linear-gradient(to bottom, #1A3A1A, #0D260D);
+    background: linear-gradient(to bottom, #F5DEB3, #D2B48C);
 }
 
-.roses {
+/* Chinna Character */
+.chinna {
     position: absolute;
     bottom: 30%;
-    width: 100%;
-    height: 100px;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><path d="M10,10 Q15,5 20,10 T30,10 T40,10 T50,10 T60,10 T70,10 T80,10 T90,10" fill="none" stroke="%23FF4081" stroke-width="2"/></svg>');
-    background-repeat: repeat-x;
-    opacity: 0.7;
+    left: 40%;
+    transform: translateX(-50%);
+    z-index: 10;
 }
 
-.apology-container {
+.chinna .head {
+    width: 40px;
+    height: 40px;
+    background: #FFD699;
+    border-radius: 50%;
     position: absolute;
-    top: 50%;
+    bottom: 80px;
     left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    z-index: 100;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 0 25px rgba(255, 64, 129, 0.4);
-    max-width: 80%;
-    backdrop-filter: blur(5px);
-    opacity: 0;
-    transition: opacity 1.5s ease-in-out;
-    border: 1px solid rgba(255, 64, 129, 0.3);
+    transform: translateX(-50%);
+    animation: chinnaHeadTilt 3s infinite alternate;
 }
 
-h1 {
-    font-family: 'Dancing Script', cursive;
-    color: #FF4081;
-    margin-bottom: 20px;
-    font-size: 2.8rem;
-    text-shadow: 0 0 5px rgba(255, 64, 129, 0.5);
+@keyframes chinnaHeadTilt {
+    0% { transform: translateX(-50%) rotate(0deg); }
+    100% { transform: translateX(-50%) rotate(-5deg); }
 }
 
-.message-box {
-    margin: 25px 0;
-    line-height: 1.8;
-}
-
-.message-box p {
-    font-size: 1.2rem;
-    margin: 10px 0;
-    color: #E0E0E0;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeIn 0.8s forwards;
-}
-
-.message-box p:nth-child(1) { animation-delay: 0.5s; }
-.message-box p:nth-child(2) { animation-delay: 1.2s; }
-.message-box p:nth-child(3) { animation-delay: 1.9s; }
-
-@keyframes fadeIn {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 30px;
-}
-
-button {
-    padding: 12px 30px;
-    border: none;
-    border-radius: 50px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-weight: 600;
-}
-
-#forgiveBtn {
-    background: linear-gradient(to right, #4CAF50, #81C784);
-    color: white;
-}
-
-#notYetBtn {
-    background: linear-gradient(to right, #9E9E9E, #757575);
-    color: white;
-}
-
-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.hidden {
-    display: none;
-}
-
-.final-message {
-    font-size: 1.8rem;
-    margin: 30px 0;
-    color: #FF4081;
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
-
-.hearts-animation {
-    position: relative;
-    height: 200px;
-    width: 100%;
-    overflow: hidden;
-}
-
-.heart {
+.chinna .body {
+    width: 30px;
+    height: 50px;
+    background: #3498db;
     position: absolute;
-    pointer-events: none;
-    font-size: 20px;
-    animation: floatUp 4s linear forwards;
-    opacity: 0;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 10px 10px 0 0;
 }
 
-@keyframes floatUp {
-    0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-150px) rotate(20deg);
-        opacity: 0;
-    }
-}
-
-.rose-petal {
+.chinna .arm-left {
+    width: 10px;
+    height: 40px;
+    background: #3498db;
     position: absolute;
-    width: 15px;
-    height: 15px;
-    background: #FF4081;
-    clip-path: path('M7.5,0 C5,5 0,5 0,2.5 C0,0 5,0 7.5,5 C10,0 15,0 15,2.5 C15,5 10,5 7.5,0 Z');
-    opacity: 0;
-    animation: floatPetal 6s linear forwards;
+    bottom: 40px;
+    left: 35%;
+    transform: rotate(20deg);
+    border-radius: 5px;
 }
 
-@keyframes floatPetal {
-    0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-200px) rotate(360deg);
-        opacity: 0;
-    }
+.chinna .arm-right {
+    width: 10px;
+    height: 50px;
+    background: #3498db;
+    position: absolute;
+    bottom: 30px;
+    left: 65%;
+    transform: rotate(-30deg);
+    border-radius: 5px;
+    animation: armRaise 3s infinite alternate;
 }
+
+@keyframes armRaise {
+    0% { transform: rotate(-30deg); }
+    100% { transform: rotate(-20deg); }
+}
+
+.chinna .leg-left {
+    width: 12px;
+    height: 30px;
+    background: #2c3e50;
+    position: absolute;
+    bottom: 0;
+    left: 45%;
+    transform: translateX(-50%);
+    border-radius: 0 0 5px 5px;
+}
+
+.chinna .leg-right {
+    width: 12px;
+    height: 30px;
+    background: #2c3e50;
+    position: absolute;
+    bottom: 0;
+    left: 55%;
+    transform: translateX(-50%);
+    border-radius: 0 0 5px 5px;
+}
+
+.chinna .ring {
+    width: 8px;
+    height: 8px;
+    background: #FFD700;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px #FFD700;
+    animation: ringSparkle 2s infinite;
+}
+
+@keyframes ringSparkle {
+    0% { box-shadow: 0 0 5px #FFD700; }
+    50% { box-shadow: 0 0 15px #FFD700; }
+    100% { box-shadow: 0 0 5px #FFD700; }
+}
+
+/* Pavani Character */
+.pavani {
+    position: absolute;
+    bottom: 30%;
+    left: 60%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.pavani .head {
+    width: 35px;
+    height: 35px;
+    background: #FFCC99;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 110px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: pavaniHeadTilt 3s infinite alternate;
+}
+
+@keyframes pavaniHeadTilt {
+    0% { transform: translateX(-50%) rotate(0deg); }
+    100% { transform: translateX(-50%) rotate(5deg); }
+}
+
+.pavani .hair {
+    width: 45px;
+    height: 25px;
+    background: #5D4037;
+    position: absolute;
+    bottom: 95px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50% 50% 0 0;
+}
+
+.pavani .body {
+    width: 25px;
+    height: 50px;
+    background: #e91e63;
+    position: absolute;
+    bottom:
