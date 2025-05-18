@@ -252,4 +252,174 @@ body {
     height: 50px;
     background: #e91e63;
     position: absolute;
-    bottom:
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 10px 10px 0 0;
+}
+
+.pavani .arm-left {
+    width: 8px;
+    height: 35px;
+    background: #e91e63;
+    position: absolute;
+    bottom: 70px;
+    left: 35%;
+    transform: rotate(20deg);
+    border-radius: 5px;
+}
+
+.pavani .arm-right {
+    width: 8px;
+    height: 35px;
+    background: #e91e63;
+    position: absolute;
+    bottom: 70px;
+    left: 65%;
+    transform: rotate(-20deg);
+    border-radius: 5px;
+    animation: pavaniArmReaction 3s infinite alternate;
+}
+
+@keyframes pavaniArmReaction {
+    0% { transform: rotate(-20deg); height: 35px; }
+    100% { transform: rotate(-10deg); height: 40px; }
+}
+
+.pavani .leg-left {
+    width: 10px;
+    height: 30px;
+    background: #FFCC99;
+    position: absolute;
+    bottom: 30px;
+    left: 45%;
+    transform: translateX(-50%);
+    border-radius: 0 0 5px 5px;
+}
+
+.pavani .leg-right {
+    width: 10px;
+    height: 30px;
+    background: #FFCC99;
+    position: absolute;
+    bottom: 30px;
+    left: 55%;
+    transform: translateX(-50%);
+    border-radius: 0 0 5px 5px;
+}
+
+.pavani .dress {
+    width: 40px;
+    height: 20px;
+    background: #e91e63;
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 0 0 20px 20px;
+}
+
+.heart {
+    position: absolute;
+    color: #FF4081;
+    font-size: 20px;
+    animation: float 6s linear infinite;
+    opacity: 0;
+}
+
+@keyframes float {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-100px) rotate(20deg); opacity: 0; }
+}
+
+.proposal-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 15px;
+    color: white;
+    width: 80%;
+    max-width: 500px;
+    backdrop-filter: blur(5px);
+}
+
+.proposal-text h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #FFD700;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+button {
+    padding: 10px 25px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 600;
+}
+
+#yesBtn {
+    background: linear-gradient(to right, #4CAF50, #81C784);
+    color: white;
+}
+
+#noBtn {
+    background: linear-gradient(to right, #9E9E9E, #757575);
+    color: white;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.response {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 15px;
+    color: white;
+    text-align: center;
+    z-index: 100;
+    width: 80%;
+    max-width: 400px;
+    backdrop-filter: blur(5px);
+}
+
+.response h2 {
+    font-family: 'Dancing Script', cursive;
+    color: #FFD700;
+    margin-bottom: 10px;
+}
+
+.response p {
+    font-size: 1.5rem;
+    color: #FF4081;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.hidden {
+    display: none;
+}
