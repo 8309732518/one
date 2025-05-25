@@ -1,4 +1,3 @@
-/* Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -6,487 +5,153 @@
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     height: 100vh;
     overflow: hidden;
-    background-color: #f0f8ff;
+    background: linear-gradient(to bottom, #1a1a2e, #16213e);
+    color: white;
 }
 
-/* Beach Scene */
-.beach-scene {
+.scene {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rain {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="2" height="20" viewBox="0 0 2 20"><path d="M1 0L1 20" stroke="%23ffffff" stroke-width="1" opacity="0.3"/></svg>');
+    background-repeat: repeat;
+    animation: rain-fall 1s linear infinite;
+    z-index: 1;
+}
+
+@keyframes rain-fall {
+    0% { background-position: 0 0; }
+    100% { background-position: -10px 100px; }
+}
+
+.broken-heart {
     position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+    width: 200px;
+    height: 200px;
+    animation: heart-break 2s forwards;
+    z-index: 2;
 }
 
-/* Sky Elements */
-.sky {
+.heart-piece {
     position: absolute;
-    top: 0;
-    width: 100%;
-    height: 60%;
-    background: linear-gradient(to bottom, #ff7e5f, #feb47b);
-    animation: sky-change 20s infinite alternate;
-}
-
-@keyframes sky-change {
-    0% { background: linear-gradient(to bottom, #ff7e5f, #feb47b); }
-    50% { background: linear-gradient(to bottom, #ff6b6b, #ffb347); }
-    100% { background: linear-gradient(to bottom, #667eea, #764ba2); }
-}
-
-.sun {
-    position: absolute;
-    top: 10%;
-    right: 15%;
-    width: 80px;
-    height: 80px;
-    background: radial-gradient(circle, #FFD700, #FF8C00);
-    border-radius: 50%;
-    box-shadow: 0 0 50px #FFA500;
-    animation: sun-pulse 8s infinite alternate;
-}
-
-@keyframes sun-pulse {
-    0% { transform: scale(1); opacity: 0.9; }
-    50% { transform: scale(1.05); opacity: 1; }
-    100% { transform: scale(1); opacity: 0.9; }
-}
-
-.cloud {
-    position: absolute;
-    background: white;
-    border-radius: 50%;
-    opacity: 0.8;
-    animation: cloud-move 30s linear infinite;
-}
-
-.cloud-1 {
     width: 100px;
-    height: 60px;
-    top: 15%;
-    left: 10%;
+    height: 180px;
+    background-color: #ff4d4d;
+    top: 10px;
 }
 
-.cloud-2 {
-    width: 150px;
-    height: 90px;
-    top: 20%;
-    left: 50%;
-    animation-duration: 40s;
+.heart-piece.left {
+    left: 0;
+    border-radius: 100px 100px 0 0;
+    transform: rotate(-45deg);
+    transform-origin: right bottom;
+    animation: left-piece-fall 1.5s forwards 2s;
 }
 
-@keyframes cloud-move {
-    0% { transform: translateX(-150px); }
-    100% { transform: translateX(calc(100vw + 150px)); }
+.heart-piece.right {
+    right: 0;
+    border-radius: 100px 100px 0 0;
+    transform: rotate(45deg);
+    transform-origin: left bottom;
+    animation: right-piece-fall 1.5s forwards 2s;
 }
 
-/* Ocean Elements */
-.ocean {
+.crack {
     position: absolute;
-    bottom: 25%;
-    width: 100%;
-    height: 25%;
-    background: linear-gradient(to bottom, #1e90ff, #00bfff);
-    animation: ocean-change 15s infinite alternate;
-}
-
-@keyframes ocean-change {
-    0% { background: linear-gradient(to bottom, #1e90ff, #00bfff); }
-    50% { background: linear-gradient(to bottom, #00bfff, #0080ff); }
-    100% { background: linear-gradient(to bottom, #0080ff, #0055ff); }
-}
-
-.wave {
-    position: absolute;
-    width: 200%;
-    height: 100%;
-    background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%2300BFFF"/></svg>');
-    background-repeat: repeat-x;
-    animation: wave-move 15s linear infinite;
-}
-
-.wave-1 {
-    bottom: 0;
-    opacity: 0.8;
-}
-
-.wave-2 {
-    bottom: 10px;
-    opacity: 0.5;
-    animation-duration: 12s;
-}
-
-@keyframes wave-move {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-
-/* Beach Elements */
-.sand {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 25%;
-    background: linear-gradient(to bottom, #f5deb3, #e6c88c);
-}
-
-.shell {
-    position: absolute;
-    width: 30px;
-    height: 25px;
-    background: white;
-    border-radius: 50% 50% 0 0;
-    opacity: 0.8;
-}
-
-.shell-1 {
-    bottom: 10px;
-    left: 20%;
-    transform: rotate(-20deg);
-}
-
-.shell-2 {
-    bottom: 15px;
-    left: 70%;
-    transform: rotate(30deg);
-}
-
-/* Character Styles - Chinna */
-.chinna {
-    position: absolute;
-    bottom: 25%;
-    left: 40%;
-    transform: translateX(-50%);
-    z-index: 10;
-    animation: chinna-breathe 3s infinite alternate;
-}
-
-@keyframes chinna-breathe {
-    0% { transform: translateX(-50%) translateY(0); }
-    100% { transform: translateX(-50%) translateY(-5px); }
-}
-
-.chinna-head {
-    width: 45px;
-    height: 45px;
-    background: linear-gradient(to bottom, #ffd699, #e6b88a);
-    border-radius: 50%;
-    position: absolute;
-    bottom: 90px;
-    left: 50%;
-    transform: translateX(-50%);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-.chinna-body {
-    width: 35px;
-    height: 60px;
-    background: #3498db;
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 15px 15px 0 0;
-}
-
-.chinna-arm-left {
-    width: 12px;
-    height: 45px;
-    background: #3498db;
-    position: absolute;
-    bottom: 45px;
-    left: 35%;
-    transform: rotate(25deg);
-    border-radius: 5px;
-}
-
-.chinna-arm-right {
-    width: 12px;
-    height: 60px;
-    background: #3498db;
-    position: absolute;
-    bottom: 30px;
-    left: 65%;
-    transform: rotate(-35deg);
-    border-radius: 5px;
-    animation: arm-raise 3s infinite alternate;
-}
-
-@keyframes arm-raise {
-    0% { transform: rotate(-35deg); }
-    100% { transform: rotate(-25deg); }
-}
-
-.proposal-ring {
-    width: 10px;
-    height: 10px;
-    background: #FFD700;
-    border-radius: 50%;
-    position: absolute;
-    top: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    box-shadow: 0 0 15px #FFD700;
-    animation: ring-sparkle 2s infinite;
-}
-
-@keyframes ring-sparkle {
-    0% { box-shadow: 0 0 10px #FFD700; transform: translateX(-50%) scale(1); }
-    50% { box-shadow: 0 0 20px #FFD700; transform: translateX(-50%) scale(1.1); }
-    100% { box-shadow: 0 0 10px #FFD700; transform: translateX(-50%) scale(1); }
-}
-
-.chinna-leg-left, .chinna-leg-right {
-    width: 15px;
-    height: 35px;
-    background: #2c3e50;
-    position: absolute;
-    bottom: 0;
-    border-radius: 0 0 8px 8px;
-}
-
-.chinna-leg-left {
-    left: 45%;
-    transform: translateX(-50%);
-}
-
-.chinna-leg-right {
-    left: 55%;
-    transform: translateX(-50%);
-}
-
-.chinna-name {
-    position: absolute;
-    bottom: -25px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: white;
-    font-weight: bold;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-}
-
-/* Character Styles - Pavani */
-.pavani {
-    position: absolute;
-    bottom: 25%;
-    left: 60%;
-    transform: translateX(-50%);
-    z-index: 10;
-    animation: pavani-breathe 3s infinite alternate-reverse;
-}
-
-@keyframes pavani-breathe {
-    0% { transform: translateX(-50%) translateY(0); }
-    100% { transform: translateX(-50%) translateY(-5px); }
-}
-
-.pavani-head {
-    width: 40px;
-    height: 40px;
-    background: linear-gradient(to bottom, #ffcc99, #e6b88a);
-    border-radius: 50%;
-    position: absolute;
-    bottom: 120px;
-    left: 50%;
-    transform: translateX(-50%);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-.pavani-hair {
-    width: 50px;
-    height: 30px;
-    background: #5D4037;
-    position: absolute;
-    bottom: 100px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 50% 50% 0 0;
-}
-
-.pavani-body {
-    width: 30px;
-    height: 60px;
-    background: #e91e63;
-    position: absolute;
-    bottom: 60px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 15px 15px 0 0;
-}
-
-.pavani-arm-left, .pavani-arm-right {
     width: 10px;
     height: 40px;
-    background: #e91e63;
-    position: absolute;
-    bottom: 75px;
-    border-radius: 5px;
+    background-color: #1a1a2e;
+    left: 95px;
+    top: 80px;
+    transform: rotate(45deg);
+    opacity: 0;
+    animation: crack-appear 1s forwards 1s;
 }
 
-.pavani-arm-left {
-    left: 35%;
-    transform: rotate(25deg);
-}
-
-.pavani-arm-right {
-    left: 65%;
-    transform: rotate(-20deg);
-    animation: pavani-arm-move 3s infinite alternate;
-}
-
-@keyframes pavani-arm-move {
-    0% { transform: rotate(-20deg); height: 40px; }
-    100% { transform: rotate(-10deg); height: 45px; }
-}
-
-.pavani-dress {
-    width: 45px;
-    height: 25px;
-    background: #e91e63;
-    position: absolute;
-    bottom: 55px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 0 0 25px 25px;
-}
-
-.pavani-name {
-    position: absolute;
-    bottom: -25px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: white;
-    font-weight: bold;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-}
-
-/* Romantic Elements */
-.floating-hearts {
+.teardrops {
     position: absolute;
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 5;
+    z-index: 3;
 }
 
-.heart {
+.teardrop {
     position: absolute;
-    color: #FF4081;
-    font-size: 20px;
-    animation: float 8s linear infinite;
-    opacity: 0;
-    text-shadow: 0 0 10px rgba(255,64,129,0.5);
+    width: 10px;
+    height: 20px;
+    background: linear-gradient(to bottom, rgba(100, 200, 255, 0.8), transparent);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: teardrop-fall 3s linear forwards;
+    opacity: 0.6;
 }
 
-@keyframes float {
-    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-    10% { opacity: 1; }
-    90% { opacity: 1; }
-    100% { transform: translateY(-100px) rotate(20deg); opacity: 0; }
-}
-
-/* Proposal Box */
-.proposal-box {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.7);
-    padding: 30px;
-    border-radius: 20px;
-    text-align: center;
-    z-index: 100;
-    width: 90%;
-    max-width: 500px;
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255,255,255,0.1);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    opacity: 0;
-    animation: fade-in 2s forwards 1s;
-}
-
-@keyframes fade-in {
-    to { opacity: 1; }
-}
-
-.proposal-box h1 {
-    font-family: 'Dancing Script', cursive;
-    font-size: 2.5rem;
-    color: #FFD700;
-    margin-bottom: 20px;
-    text-shadow: 0 0 10px rgba(255,215,0,0.5);
-}
-
-.proposal-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.proposal-buttons button {
-    padding: 12px 30px;
-    border: none;
-    border-radius: 50px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-weight: 600;
-}
-
-#yes-btn {
-    background: linear-gradient(to right, #4CAF50, #81C784);
-    color: white;
-}
-
-#no-btn {
-    background: linear-gradient(to right, #9E9E9E, #757575);
-    color: white;
-}
-
-.proposal-buttons button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-
-/* Response Box */
-.response-box {
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.8);
-    padding: 30px;
-    border-radius: 20px;
-    text-align: center;
-    z-index: 101;
-    width: 90%;
-    max-width: 400px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.2);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-
-.response-box h2 {
-    font-family: 'Dancing Script', cursive;
-    color: #FFD700;
-    margin-bottom: 15px;
-    font-size: 2rem;
-}
-
-.response-box p {
-    font-size: 1.8rem;
-    color: #FF4081;
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
+@keyframes heart-break {
     0% { transform: scale(1); }
     50% { transform: scale(1.1); }
     100% { transform: scale(1); }
 }
 
-.hidden {
-    display: none;
+@keyframes crack-appear {
+    0% { opacity: 0; height: 0; }
+    100% { opacity: 1; height: 40px; }
+}
+
+@keyframes left-piece-fall {
+    0% { transform: rotate(-45deg); top: 10px; }
+    100% { transform: rotate(-75deg); top: 150px; }
+}
+
+@keyframes right-piece-fall {
+    0% { transform: rotate(45deg); top: 10px; }
+    100% { transform: rotate(75deg); top: 150px; }
+}
+
+@keyframes teardrop-fall {
+    0% { transform: translateY(-100px); opacity: 0; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.6; }
+    100% { transform: translateY(100vh); opacity: 0; }
+}
+
+.message {
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 4;
+    opacity: 0;
+    animation: message-appear 2s forwards 3s;
+}
+
+.message h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    color: #ff4d4d;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(255, 77, 77, 0.5);
+}
+
+.message p {
+    font-size: 1.2rem;
+    color: #ffffff;
+    opacity: 0.8;
+}
+
+@keyframes message-appear {
+    0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+    100% { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
